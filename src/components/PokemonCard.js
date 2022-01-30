@@ -5,15 +5,19 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { capitalize } from "lodash";
 import React from "react";
-import getColorByType from "../utils/getColorByType";
+import getColorByType from "../utils/getColorByPokemonType";
+
 export default function PokemonCard(props) {
+  const navigation = useNavigation();
   const { pokemon } = props;
   const color = getColorByType(pokemon.type);
   const bgStyle = { backgroundColor: color, ...styles.bdStyles };
+
   const goToPokemon = () => {
-    console.log("Pokemon" + pokemon.name);
+    navigation.navigate("Pokemon", { id: pokemon.id });
   };
 
   return (
